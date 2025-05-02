@@ -2,9 +2,14 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Proyecto Arduino - Estilo 8-bit</title>
+  <title>Proyecto Arduino 8-bit</title>
+
+  <!-- Fuente estilo pixelada 8-bit desde Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <!-- Estilos CSS -->
   <style>
+    /* Estilo general del cuerpo */
     body {
       font-family: 'Press Start 2P', cursive;
       background-color: black;
@@ -15,26 +20,41 @@
       overflow-x: hidden;
     }
 
-    h1, p {
-      margin: 20px 0;
-    }
-
-    .box {
-      border: 2px solid limegreen;
+    /* Cuadro especial para el título principal */
+    .titulo-principal {
+      border: 3px solid limegreen;
       background-color: #111;
       padding: 30px;
-      display: inline-block;
-      margin-top: 20px;
-      box-shadow: 0 0 20px limegreen;
+      margin-bottom: 40px;
+      box-shadow: 0 0 15px limegreen;
     }
 
-    img.pixel-art {
+    /* Contenedor general de los bloques */
+    .bloques-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    /* Cada bloque de contenido (texto + imagen) */
+    .bloque {
+      border: 2px solid limegreen;
+      background-color: #111;
+      padding: 20px;
+      width: 280px;
+      box-shadow: 0 0 10px limegreen;
+    }
+
+    /* Imágenes estilo pixel art */
+    .pixel-art {
       image-rendering: pixelated;
-      width: 200px;
+      width: 100%;
       height: auto;
-      margin-top: 20px;
+      margin-top: 10px;
     }
 
+    /* Líneas CRT animadas como efecto de escaneo */
     .scanline {
       position: fixed;
       top: 0;
@@ -50,25 +70,54 @@
       z-index: 999;
     }
 
+    /* Texto final de pie de página */
     .footer {
-      margin-top: 40px;
-      font-size: 10px;
-      opacity: 0.7;
+      margin-top: 60px;
+      font-size: 14px;
+      opacity: 0.8;
     }
   </style>
 </head>
+
 <body>
+  <!-- Efecto de líneas estilo CRT -->
   <div class="scanline"></div>
 
-  <div class="box">
-    <h1>Proyecto Arduino</h1>
-    <p>¡Bienvenido a mi página retro!</p>
-    <img src="https://i.imgur.com/1ZQZ1Zm.png" alt="Arduino Pixel Art" class="pixel-art">
-    <p>Explora mi proyecto con estilo 8-bit.</p>
+  <!-- TÍTULO PRINCIPAL EN SU CUADRO -->
+  <div class="titulo-principal">
+    <h1>PROYECTO ARDUINO 8-BIT</h1>
+    <p>¡Explora el lado retro de la tecnología!</p>
   </div>
 
+  <!-- BLOQUES DE CONTENIDO -->
+  <div class="bloques-container">
+
+    <!-- BLOQUE 1 -->
+    <div class="bloque">
+      <h2>Sensor de Temperatura</h2>
+      <p>Usamos un sensor para medir temperatura ambiente con estilo clásico.</p>
+      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="Sensor">
+    </div>
+
+    <!-- BLOQUE 2 -->
+    <div class="bloque">
+      <h2>Control por LED</h2>
+      <p>Encendemos luces LED como en los juegos retro 🎮</p>
+      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="LED">
+    </div>
+
+    <!-- BLOQUE 3 -->
+    <div class="bloque">
+      <h2>Motor y Movimiento</h2>
+      <p>Activamos motores para dar vida a tu proyecto.</p>
+      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Motor">
+    </div>
+
+  </div>
+
+  <!-- PIE DE PÁGINA -->
   <div class="footer">
-    Hecho por Bauti2334 - GitHub Pages
+    HECHO CON ♥ POR BAUTI2334 – ESTILO 8-BIT – GITHUB PAGES
   </div>
 </body>
 </html>
