@@ -2,10 +2,73 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Página QR</title>
+  <title>Mi Proyecto Arduino - Estilo 8-bit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: limegreen;
+      text-align: center;
+      padding: 40px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    h1, p {
+      margin: 20px 0;
+    }
+
+    .box {
+      border: 2px solid limegreen;
+      background-color: #111;
+      padding: 30px;
+      display: inline-block;
+      margin-top: 20px;
+      box-shadow: 0 0 20px limegreen;
+    }
+
+    img.pixel-art {
+      image-rendering: pixelated;
+      width: 200px;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .scanline {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        transparent 0px,
+        rgba(0, 255, 0, 0.03) 2px,
+        transparent 4px
+      );
+      z-index: 999;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 10px;
+      opacity: 0.7;
+    }
+  </style>
 </head>
 <body>
-  <h1>¡Hola! Accediste desde un código QR</h1>
-  <p>Gracias por escanear.</p>
+  <div class="scanline"></div>
+
+  <div class="box">
+    <h1>Proyecto Arduino</h1>
+    <p>¡Bienvenido a mi página retro!</p>
+    <img src="https://i.imgur.com/1ZQZ1Zm.png" alt="Arduino Pixel Art" class="pixel-art">
+    <p>Explora mi proyecto con estilo 8-bit.</p>
+  </div>
+
+  <div class="footer">
+    Hecho por Bauti2334 - GitHub Pages
+  </div>
 </body>
 </html>
