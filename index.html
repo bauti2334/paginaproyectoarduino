@@ -2,51 +2,58 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Proyecto Arduino 8-bit</title>
-
-  <!-- Fuente estilo pixelada 8-bit desde Google Fonts -->
+  <title>Proyecto Arduino 🇦🇷</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
-  <!-- Estilos CSS -->
   <style>
-    /* Estilo general del cuerpo */
     body {
       font-family: 'Press Start 2P', cursive;
       background-color: black;
-      color: limegreen;
+      color: white;
       text-align: center;
       padding: 40px;
       margin: 0;
       overflow-x: hidden;
     }
 
-    /* Cuadro especial para el título principal */
     .titulo-principal {
-      border: 3px solid limegreen;
+      border: 3px solid white;
       background-color: #111;
       padding: 30px;
       margin-bottom: 40px;
-      box-shadow: 0 0 15px limegreen;
+      box-shadow: 0 0 15px deepskyblue;
     }
 
-    /* Contenedor general de los bloques */
     .bloques-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
+      animation: fadeIn 1.5s ease-in;
     }
 
-    /* Cada bloque de contenido (texto + imagen) */
-    .bloque {
-      border: 2px solid limegreen;
+    .bloque, .bloque-grande {
+      border: 2px solid white;
       background-color: #111;
       padding: 20px;
-      width: 280px;
-      box-shadow: 0 0 10px limegreen;
+      box-shadow: 0 0 10px deepskyblue;
+      transition: transform 0.3s;
     }
 
-    /* Imágenes estilo pixel art */
+    .bloque:hover, .bloque-grande:hover {
+      transform: scale(1.05);
+    }
+
+    .bloque {
+      width: 280px;
+    }
+
+    .bloque-grande {
+      width: 90%;
+      max-width: 800px;
+      margin: 40px auto;
+    }
+
     .pixel-art {
       image-rendering: pixelated;
       width: 100%;
@@ -54,7 +61,6 @@
       margin-top: 10px;
     }
 
-    /* Líneas CRT animadas como efecto de escaneo */
     .scanline {
       position: fixed;
       top: 0;
@@ -64,84 +70,105 @@
       pointer-events: none;
       background: repeating-linear-gradient(
         transparent 0px,
-        rgba(0, 255, 0, 0.03) 2px,
+        rgba(255, 255, 255, 0.02) 2px,
         transparent 4px
       );
       z-index: 999;
     }
 
-    /* Bloques grandes al final */
-    .bloque-grande {
-      border: 2px solid limegreen;
-      background-color: #111;
-      padding: 30px;
-      width: 90%;
-      max-width: 800px;
-      margin: 40px auto;
-      box-shadow: 0 0 15px limegreen;
+    .sidebar {
+      position: fixed;
+      top: 100px;
+      right: 10px;
+      width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 1000;
+    }
+
+    .sidebar .bloque {
+      width: 100%;
+      padding: 10px;
+      font-size: 8px;
     }
 
     .footer {
       margin-top: 60px;
       font-size: 14px;
-      opacity: 0.8;
+      opacity: 0.9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
-  <!-- Efecto de líneas estilo CRT -->
   <div class="scanline"></div>
 
-  <!-- TÍTULO PRINCIPAL EN SU CUADRO -->
   <div class="titulo-principal">
-    <h1>PROYECTO ARDUINO 8-BIT</h1>
-    <p>¡Explora el lado retro de la tecnología!</p>
+    <h1>PROYECTO ARDUINO 🇦🇷</h1>
+    <p>¡Tecnología criolla con espíritu 8-bit y unos buenos mates!</p>
   </div>
 
-  <!-- BLOQUES DE CONTENIDO -->
   <div class="bloques-container">
 
-    <!-- BLOQUE 1 -->
     <div class="bloque">
       <h2>Sensor de Temperatura</h2>
-      <p>Usamos un sensor para medir temperatura ambiente con estilo clásico.</p>
+      <p>Mide la temperatura ambiente... ideal para cebar el mate justo.</p>
       <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="Sensor">
     </div>
 
-    <!-- BLOQUE 2 -->
     <div class="bloque">
       <h2>Control por LED</h2>
-      <p>Encendemos luces LED como en los juegos retro 🎮</p>
+      <p>Luces LED que iluminan como una tarde de asado.</p>
       <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="LED">
     </div>
 
-    <!-- BLOQUE 3 -->
     <div class="bloque">
       <h2>Motor y Movimiento</h2>
-      <p>Activamos motores para dar vida a tu proyecto.</p>
+      <p>¡Motores al ritmo del folclore tecnológico!</p>
       <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Motor">
+    </div>
+
+    <div class="bloque">
+      <h2>Mate Electrónico</h2>
+      <p>Detecta si el agua está a punto con un sensor de temperatura.</p>
+      <img src="https://i.imgur.com/ZqH9Lhx.png" class="pixel-art" alt="Mate">
+    </div>
+
+    <div class="bloque">
+      <h2>Humedad en la Yerba</h2>
+      <p>¿Yerba seca? Este sensor te avisa antes de que sea tarde.</p>
+      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Yerba">
     </div>
 
   </div>
 
-  <!-- BLOQUE GRANDE 1 -->
   <div class="bloque-grande">
     <h2>Explicación del Proyecto</h2>
-    <p>En este proyecto utilizamos un Arduino para controlar dispositivos como sensores, luces LED y motores. Es una excelente forma de aprender y divertirse con la tecnología retro.</p>
+    <p>El Proyecto Arduino 8-bit 🇦🇷 busca fusionar electrónica, cultura y diversión con un toque pixelado. Sensores y placas que se integran con tradiciones argentinas como el mate o el asado. Todo bajo una estética retro.</p>
     <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Explicación Proyecto">
   </div>
 
-  <!-- BLOQUE GRANDE 2 -->
   <div class="bloque-grande">
     <h2>Objetivos del Proyecto</h2>
-    <p>El objetivo principal es crear un sistema automatizado con Arduino que sea fácil de usar, divertido y funcional, además de aprender los conceptos básicos de la electrónica y programación.</p>
+    <p>Aprender Arduino y electrónica sin perder el folklore. Promover el aprendizaje con proyectos divertidos, útiles y con identidad nacional. ¡Hecho en Argentina, con código libre y mates de por medio!</p>
     <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Objetivos Proyecto">
   </div>
 
-  <!-- PIE DE PÁGINA -->
   <div class="footer">
-    HECHO CON ♥ POR BAUTI2334 – ESTILO 8-BIT – GITHUB PAGES
+    HECHO CON ♥ POR BAUTI2334 🇦🇷 – ESTILO 8-BIT – GITHUB PAGES
+  </div>
+
+  <!-- BLOQUES FIJOS A LA DERECHA -->
+  <div class="sidebar">
+    <div class="bloque">🇦🇷 Hecho en Argentina</div>
+    <div class="bloque">🧉 Tecnología con Mate</div>
+    <div class="bloque">📡 Proyecto Escolar</div>
   </div>
 </body>
 </html>
