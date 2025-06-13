@@ -10,10 +10,10 @@
       font-family: 'Press Start 2P', cursive;
       background-color: black;
       color: white;
-      margin: 0;
+      text-align: center;
       padding: 0;
+      margin: 0;
       overflow-x: hidden;
-      position: relative;
     }
 
     .scanline {
@@ -28,31 +28,10 @@
         rgba(255, 255, 255, 0.02) 2px,
         transparent 4px
       );
-      z-index: 1;
+      z-index: 999;
     }
 
-    .decoracion-lateral {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 60px;
-      background-size: cover;
-      background-repeat: repeat-y;
-      opacity: 0.2;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .decoracion-izquierda {
-      left: 0;
-      background-image: url('https://i.postimg.cc/9F2kNvMz/mate.png');
-    }
-
-    .decoracion-derecha {
-      right: 0;
-      background-image: url('https://i.postimg.cc/QMjT1Mn0/bandera.png');
-    }
-
+    /* Sección principal con logo + título */
     .header {
       background-color: #111;
       padding: 40px 20px;
@@ -63,19 +42,15 @@
       align-items: center;
       gap: 30px;
       flex-wrap: wrap;
-      z-index: 2;
-      position: relative;
     }
 
     .header img {
-      width: 140px;
-      max-width: 100%;
-      image-rendering: auto;
+      width: 120px;
+      image-rendering: pixelated;
     }
 
     .header-text h1 {
       margin: 0;
-      font-size: 14px;
     }
 
     .header-text p {
@@ -83,12 +58,14 @@
       font-size: 10px;
     }
 
+    /* Título de cada sección */
     .section-title {
       font-size: 12px;
       padding: 40px 0 20px;
       text-shadow: 0 0 5px deepskyblue;
     }
 
+    /* Contenedor de bloques */
     .bloques-container {
       display: flex;
       flex-wrap: wrap;
@@ -96,8 +73,6 @@
       gap: 20px;
       margin-bottom: 40px;
       padding: 0 20px;
-      z-index: 2;
-      position: relative;
     }
 
     .bloque {
@@ -120,6 +95,7 @@
       margin-top: 10px;
     }
 
+    /* Bloque gigante */
     .bloque-grande {
       background-color: #111;
       border: 2px solid white;
@@ -127,8 +103,6 @@
       margin: 60px auto;
       padding: 40px;
       box-shadow: 0 0 20px deepskyblue;
-      z-index: 2;
-      position: relative;
     }
 
     .footer {
@@ -141,27 +115,14 @@
       .bloque {
         width: 90%;
       }
-
-      .header img {
-        width: 100px;
-      }
-
-      .header-text h1 {
-        font-size: 10px;
-      }
-
-      .decoracion-lateral {
-        display: none;
-      }
     }
   </style>
 </head>
+
 <body>
-
   <div class="scanline"></div>
-  <div class="decoracion-lateral decoracion-izquierda"></div>
-  <div class="decoracion-lateral decoracion-derecha"></div>
 
+  <!-- ENCABEZADO PRINCIPAL CON LOGO -->
   <div class="header">
     <img src="https://i.postimg.cc/vB2cLHBK/Logo.png" alt="Logotipo">
     <div class="header-text">
@@ -174,67 +135,112 @@
   <h2 class="section-title">TRABAJO DE LA MANO ROBOTICA</h2>
   <div class="bloques-container">
     <div class="bloque">
-      <h3>Diseño de Piezas</h3>
-      <p>Medición y modelado 3D inicial.</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art">
+      <h3>TRABAJO DE LA MANO ROBOTICA</h3>
+      <p>Medicion y Diseños de Piezas.</p>
+      <img src="https://imgur.com/a/IjrsxKk.jpg" class="pixel-art" alt="Sensor">
     </div>
     <div class="bloque">
-      <h3>Impresión 3D</h3>
-      <p>Producción de componentes físicos.</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art">
+      <h3>Impresion de Piezas</h3>
+      <p>Proceso largo che...</p>
+      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Yerba">
     </div>
     <div class="bloque">
-      <h3>Verificación</h3>
-      <p>Correcciones y ajustes finales.</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art">
+      <h3>Verificamiento y Correciones</h3>
+      <p>Verificamos todas las piezas y imprimimos faltantes</p>
+      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="Luz">
+    </div>
+    <div class="bloque">
+      <h3>Ensamble</h3>
+      <p>FALTA</p>
+      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Agua">
+    </div>
+    <div class="bloque">
+      <h3>FALTA</h3>
+      <p>QUIERO</p>
+      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Movimiento">
+    </div>
+    <div class="bloque">
+      <h3>33</h3>
+      <p>HIJO DE PUTA</p>
+      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Sonido">
     </div>
   </div>
 
   <!-- SECCIÓN 2 -->
-  <h2 class="section-title">CONTROL</h2>
+  <h2 class="section-title">SECCIÓN 2: CONTROL</h2>
   <div class="bloques-container">
     <div class="bloque">
-      <h3>LED Indicador</h3>
-      <p>Estado de encendido.</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art">
+      <h3>LED Mate</h3>
+      <p>Indicador de cebado listo.</p>
+      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="LED Mate">
     </div>
     <div class="bloque">
-      <h3>Servo</h3>
-      <p>Control de mecanismos.</p>
-      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art">
+      <h3>Motor Bomba</h3>
+      <p>Paso de agua automatizado.</p>
+      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Motor">
     </div>
     <div class="bloque">
-      <h3>Pantalla LCD</h3>
-      <p>Datos en tiempo real.</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art">
+      <h3>Servo Tapa</h3>
+      <p>Levanta tapa del termo.</p>
+      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="Servo">
+    </div>
+    <div class="bloque">
+      <h3>Rele Eléctrico</h3>
+      <p>Encendido de dispositivos.</p>
+      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Rele">
+    </div>
+    <div class="bloque">
+      <h3>Display LCD</h3>
+      <p>Muestra temperatura y estado.</p>
+      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="LCD">
+    </div>
+    <div class="bloque">
+      <h3>Botón Reset</h3>
+      <p>Reinicia el sistema.</p>
+      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Botón">
     </div>
   </div>
 
   <!-- SECCIÓN 3 -->
-  <h2 class="section-title">INTERACCIÓN</h2>
+  <h2 class="section-title">SECCIÓN 3: INTERACCIÓN</h2>
   <div class="bloques-container">
     <div class="bloque">
-      <h3>Bluetooth</h3>
-      <p>Control vía app.</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art">
+      <h3>App Bluetooth</h3>
+      <p>Control remoto desde el celular.</p>
+      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="Bluetooth">
     </div>
     <div class="bloque">
       <h3>Notificaciones</h3>
-      <p>Alertas automáticas.</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art">
+      <p>Avisa si el mate está listo.</p>
+      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Notificaciones">
+    </div>
+    <div class="bloque">
+      <h3>QR Escaneo</h3>
+      <p>Abre esta web al escanear.</p>
+      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="QR">
     </div>
     <div class="bloque">
       <h3>Joystick</h3>
-      <p>Navegación manual.</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art">
+      <p>Controla la selección del menú.</p>
+      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Joystick">
+    </div>
+    <div class="bloque">
+      <h3>Pantalla OLED</h3>
+      <p>Visualización compacta retro.</p>
+      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="OLED">
+    </div>
+    <div class="bloque">
+      <h3>Buzzer</h3>
+      <p>Alerta sonora pixelada.</p>
+      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Buzzer">
     </div>
   </div>
 
-  <!-- INFORME FINAL -->
+  <!-- SECCIÓN DE INFORME FINAL -->
   <div class="bloque-grande">
     <h2>INFORME FINAL</h2>
-    <p>Este proyecto integra Arduino y ESP32, tecnología de asistencia remota y una mano robótica para neutralizar amenazas. Un esfuerzo 100% argentino.</p>
-    <img src="https://i.postimg.cc/XvQJ47wv/images-1.jpg" alt="Informe Final" style="width:100%; margin-top:20px;">
+    <p>Este proyecto integra Arduino y ESP32,Tecnologia VR para la comodidad del conductor, Una mano robotica para la desactivacion adecuada del artefacto explosivo, Producto %100 ingenio argentino(plata y miedo nunca tuvimos).</p>
+    <img src="https://i.postimg.cc/XvQJ47wv/images-1.jpg" alt="Informe Final">
   </div>
 
   <div class="footer">
