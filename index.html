@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Proyecto Arduino 🇦🇷</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/mgWjT0sh/logitipo.png">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <style>
@@ -31,7 +32,6 @@
       z-index: 999;
     }
 
-    /* Sección principal con logo + título */
     .header {
       background-color: #111;
       padding: 40px 20px;
@@ -46,6 +46,7 @@
 
     .header img {
       width: 120px;
+      height: auto;
       image-rendering: pixelated;
     }
 
@@ -58,14 +59,12 @@
       font-size: 10px;
     }
 
-    /* Título de cada sección */
     .section-title {
       font-size: 12px;
       padding: 40px 0 20px;
       text-shadow: 0 0 5px deepskyblue;
     }
 
-    /* Contenedor de bloques */
     .bloques-container {
       display: flex;
       flex-wrap: wrap;
@@ -95,7 +94,6 @@
       margin-top: 10px;
     }
 
-    /* Bloque gigante */
     .bloque-grande {
       background-color: #111;
       border: 2px solid white;
@@ -115,6 +113,11 @@
       .bloque {
         width: 90%;
       }
+
+      .header {
+        flex-direction: column;
+        gap: 10px;
+      }
     }
   </style>
 </head>
@@ -122,14 +125,15 @@
 <body>
   <div class="scanline"></div>
 
-  <!-- ENCABEZADO PRINCIPAL CON LOGO -->
+  <!-- ENCABEZADO CON LOGO Y TÍTULO -->
   <div class="header">
-    <img src="https://i.postimg.cc/vB2cLHBK/Logo.png" alt="Logotipo">
+    <img src="https://i.postimg.cc/vB2cLHBK/Logo.png" alt="Logo del Proyecto">
     <div class="header-text">
       <h1>Movil AntiExplosivos</h1>
       <p>Valor y Patria.</p>
     </div>
   </div>
+
 
   <!-- SECCIÓN 1 -->
   <h2 class="section-title">TRABAJO DE LA MANO ROBOTICA</h2>
@@ -137,17 +141,17 @@
     <div class="bloque">
       <h3>TRABAJO DE LA MANO ROBOTICA</h3>
       <p>Medicion y Diseños de Piezas.</p>
-      <img src="https://imgur.com/a/IjrsxKk.jpg" class="pixel-art" alt="Sensor">
+      <img src="https://i.postimg.cc/ydxXfKFp/imagen-2025-06-22-160412109.png" class="pixel-art" alt="Sensor">
     </div>
     <div class="bloque">
       <h3>Impresion de Piezas</h3>
-      <p>Proceso largo che...</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Yerba">
+      <p>Proceso largo che... se imprimio con impresoras 3d ender y biqu</p>
+      <img src="https://i.postimg.cc/Kz3QGFRk/imagen-2025-06-22-160601091.png" class="pixel-art" alt="Yerba">
     </div>
     <div class="bloque">
       <h3>Verificamiento y Correciones</h3>
       <p>Verificamos todas las piezas y imprimimos faltantes</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="Luz">
+      <img src="https://i.postimg.cc/3xLZ2WG0/imagen-2025-06-22-160705455.png" class="pixel-art" alt="Luz">
     </div>
     <div class="bloque">
       <h3>Ensamble</h3>
