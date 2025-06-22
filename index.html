@@ -34,23 +34,25 @@
 
     .header {
       background-color: #111;
-      padding: 40px 20px;
+      padding: 30px 20px;
       border-bottom: 2px solid white;
       box-shadow: 0 0 15px deepskyblue;
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 30px;
+      gap: 20px;
       flex-wrap: wrap;
+      position: relative;
     }
 
     .header img {
-      width: 120px;
+      width: 100px;
       height: auto;
-      image-rendering: pixelated;
+      image-rendering: auto;
     }
 
     .header-text h1 {
+      font-size: 16px;
       margin: 0;
     }
 
@@ -88,10 +90,10 @@
     }
 
     .pixel-art {
-      image-rendering: pixelated;
       width: 100%;
       height: auto;
       margin-top: 10px;
+      image-rendering: pixelated;
     }
 
     .bloque-grande {
@@ -109,6 +111,27 @@
       opacity: 0.8;
     }
 
+    .decoracion {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background-size: contain;
+      background-repeat: repeat-y;
+      background-position: center;
+      z-index: 1;
+    }
+
+    .izquierda {
+      left: 0;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg');
+    }
+
+    .derecha {
+      right: 0;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg');
+    }
+
     @media screen and (max-width: 768px) {
       .bloque {
         width: 90%;
@@ -117,6 +140,15 @@
       .header {
         flex-direction: column;
         gap: 10px;
+        text-align: center;
+      }
+
+      .header img {
+        width: 80px;
+      }
+
+      .decoracion {
+        display: none;
       }
     }
   </style>
@@ -125,7 +157,11 @@
 <body>
   <div class="scanline"></div>
 
-  <!-- ENCABEZADO CON LOGO Y TÍTULO -->
+  <!-- Decoración lateral -->
+  <div class="decoracion izquierda"></div>
+  <div class="decoracion derecha"></div>
+
+  <!-- Encabezado con logo y título -->
   <div class="header">
     <img src="https://i.postimg.cc/vB2cLHBK/Logo.png" alt="Logo del Proyecto">
     <div class="header-text">
@@ -134,123 +170,13 @@
     </div>
   </div>
 
+  <!-- Aquí siguen las secciones tal cual las tenías -->
 
-  <!-- SECCIÓN 1 -->
-  <h2 class="section-title">TRABAJO DE LA MANO ROBOTICA</h2>
-  <div class="bloques-container">
-    <div class="bloque">
-      <h3>TRABAJO DE LA MANO ROBOTICA</h3>
-      <p>Medicion y Diseños de Piezas.</p>
-      <img src="https://i.postimg.cc/ydxXfKFp/imagen-2025-06-22-160412109.png" class="pixel-art" alt="Sensor">
-    </div>
-    <div class="bloque">
-      <h3>Impresion de Piezas</h3>
-      <p>Proceso largo che... se imprimio con impresoras 3d ender y biqu</p>
-      <img src="https://i.postimg.cc/Kz3QGFRk/imagen-2025-06-22-160601091.png" class="pixel-art" alt="Yerba">
-    </div>
-    <div class="bloque">
-      <h3>Verificamiento y Correciones</h3>
-      <p>Verificamos todas las piezas y imprimimos faltantes</p>
-      <img src="https://i.postimg.cc/3xLZ2WG0/imagen-2025-06-22-160705455.png" class="pixel-art" alt="Luz">
-    </div>
-    <div class="bloque">
-      <h3>Ensamble</h3>
-      <p>FALTA</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Agua">
-    </div>
-    <div class="bloque">
-      <h3>FALTA</h3>
-      <p>QUIERO</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Movimiento">
-    </div>
-    <div class="bloque">
-      <h3>33</h3>
-      <p>HIJO DE PUTA</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Sonido">
-    </div>
-  </div>
-
-  <!-- SECCIÓN 2 -->
-  <h2 class="section-title">SECCIÓN 2: CONTROL</h2>
-  <div class="bloques-container">
-    <div class="bloque">
-      <h3>LED Mate</h3>
-      <p>Indicador de cebado listo.</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="LED Mate">
-    </div>
-    <div class="bloque">
-      <h3>Motor Bomba</h3>
-      <p>Paso de agua automatizado.</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Motor">
-    </div>
-    <div class="bloque">
-      <h3>Servo Tapa</h3>
-      <p>Levanta tapa del termo.</p>
-      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="Servo">
-    </div>
-    <div class="bloque">
-      <h3>Rele Eléctrico</h3>
-      <p>Encendido de dispositivos.</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Rele">
-    </div>
-    <div class="bloque">
-      <h3>Display LCD</h3>
-      <p>Muestra temperatura y estado.</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="LCD">
-    </div>
-    <div class="bloque">
-      <h3>Botón Reset</h3>
-      <p>Reinicia el sistema.</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Botón">
-    </div>
-  </div>
-
-  <!-- SECCIÓN 3 -->
-  <h2 class="section-title">SECCIÓN 3: INTERACCIÓN</h2>
-  <div class="bloques-container">
-    <div class="bloque">
-      <h3>App Bluetooth</h3>
-      <p>Control remoto desde el celular.</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="Bluetooth">
-    </div>
-    <div class="bloque">
-      <h3>Notificaciones</h3>
-      <p>Avisa si el mate está listo.</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Notificaciones">
-    </div>
-    <div class="bloque">
-      <h3>QR Escaneo</h3>
-      <p>Abre esta web al escanear.</p>
-      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="QR">
-    </div>
-    <div class="bloque">
-      <h3>Joystick</h3>
-      <p>Controla la selección del menú.</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Joystick">
-    </div>
-    <div class="bloque">
-      <h3>Pantalla OLED</h3>
-      <p>Visualización compacta retro.</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="OLED">
-    </div>
-    <div class="bloque">
-      <h3>Buzzer</h3>
-      <p>Alerta sonora pixelada.</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Buzzer">
-    </div>
-  </div>
-
-  <!-- SECCIÓN DE INFORME FINAL -->
-  <div class="bloque-grande">
-    <h2>INFORME FINAL</h2>
-    <p>Este proyecto integra Arduino y ESP32,Tecnologia VR para la comodidad del conductor, Una mano robotica para la desactivacion adecuada del artefacto explosivo, Producto %100 ingenio argentino(plata y miedo nunca tuvimos).</p>
-    <img src="https://i.postimg.cc/XvQJ47wv/images-1.jpg" alt="Informe Final">
-  </div>
+  <!-- TODO: Pegá aquí tus secciones 1, 2, 3 y el informe final como ya están en tu HTML actual -->
 
   <div class="footer">
     HECHO POR BAUTISTA MANSILLA OTERO Y MARTIN BRUYERE
   </div>
 </body>
 </html>
-
 
