@@ -5,44 +5,18 @@
   <title>Proyecto Arduino 🇦🇷</title>
   <link rel="icon" type="image/png" href="https://i.postimg.cc/mgWjT0sh/logitipo.png">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
- <style>
-  /* ... resto del CSS igual ... */
-
-  .decoracion-lateral {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    width: 60px;
-    background-color: black;
-    z-index: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    overflow: hidden;
-    padding: 10px 0;
-  }
-
-  .decoracion-lateral img {
-    width: 45px;
-    height: auto;
-    image-rendering: pixelated;
-  }
-
-  .decoracion-izquierda {
-    left: 0;
-  }
-
-  .decoracion-derecha {
-    right: 0;
-  }
-
-  @media screen and (max-width: 768px) {
-    .decoracion-lateral {
-      display: none;
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 0;
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
     }
-  }
+
 
 
     .scanline {
@@ -60,6 +34,28 @@
       z-index: 999;
     }
 
+    /* DECORACIONES LATERALES */
+    .decoracion-lateral {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      width: 50px;
+      z-index: 10;
+      background-size: cover;
+      background-repeat: repeat-y;
+      opacity: 0.4;
+    }
+
+    .decoracion-izquierda {
+      left: 0;
+      background-image: url('https://i.postimg.cc/9F2kNvMz/mate.png'); /* Imagen de mate */
+    }
+
+    .decoracion-derecha {
+      right: 0;
+      background-image: url('https://i.postimg.cc/QMjT1Mn0/bandera.png'); /* Imagen bandera argentina */
+    }
+
     .header {
       background-color: #111;
       padding: 40px 20px;
@@ -73,14 +69,13 @@
     }
 
     .header img {
-      width: 120px;
-      height: auto;
-      image-rendering: pixelated;
+      width: 150px;
+      max-width: 90vw;
     }
 
     .header-text h1 {
       margin: 0;
-      font-size: 18px;
+      font-size: 14px;
     }
 
     .header-text p {
@@ -109,15 +104,15 @@
       width: 280px;
       padding: 20px;
       box-shadow: 0 0 10px deepskyblue;
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .bloque:hover {
       transform: scale(1.05);
+      box-shadow: 0 0 20px white;
     }
 
     .pixel-art {
-      image-rendering: pixelated;
       width: 100%;
       height: auto;
       margin-top: 10px;
@@ -138,60 +133,48 @@
       opacity: 0.8;
     }
 
-    .decoracion-lateral {
-      position: fixed;
-      top: 0;
-      bottom: 0;
-      width: 60px;
-      background-color: black;
-      z-index: 1;
-    }
-
-    .decoracion-lateral img {
-      width: 100%;
-      image-rendering: pixelated;
-      padding: 5px 0;
-    }
-
-    .decoracion-izquierda {
-      left: 0;
-    }
-
-    .decoracion-derecha {
-      right: 0;
-    }
-
     @media screen and (max-width: 768px) {
       .bloque {
         width: 90%;
       }
 
-      .header {
-        flex-direction: column;
-        gap: 10px;
+      .header-text h1 {
+        font-size: 10px;
+      }
+
+      .header img {
+        width: 100px;
       }
 
       .decoracion-lateral {
         display: none;
       }
     }
-   </style>
+  </style>
 </head>
 
 <body>
   <div class="scanline"></div>
 
-  <!-- Decoración lateral -->
-  <div class="decoracion-lateral decoracion-izquierda">
-    <img src="https://i.postimg.cc/X7nJf0JW/mate.png" alt="Mate">
-    <img src="https://i.postimg.cc/LXLGkQ6r/robot.png" alt="Robot">
-    <img src="https://i.postimg.cc/d0Cm0PZG/bandera.png" alt="Bandera">
+  <div class="decoracion-lateral decoracion-izquierda"></div>
+  <div class="decoracion-lateral decoracion-derecha"></div>
+
+  <div class="header">
+    <img src="https://i.postimg.cc/vB2cLHBK/Logo.png" alt="Logotipo">
+    <div class="header-text">
+      <h1>Movil AntiExplosivos</h1>
+      <p>Valor y Patria.</p>
+    </div>
   </div>
-  <div class="decoracion-lateral decoracion-derecha">
-    <img src="https://i.postimg.cc/d0Cm0PZG/bandera.png" alt="Bandera">
-    <img src="https://i.postimg.cc/X7nJf0JW/mate.png" alt="Mate">
-    <img src="https://i.postimg.cc/LXLGkQ6r/robot.png" alt="Robot">
+
+  <!-- Acá irían las secciones como las tenés armadas -->
+  <!-- No las copio por brevedad pero las mantenés como están -->
+
+  <div class="footer">
+    HECHO POR BAUTISTA MANSILLA OTERO Y MARTIN BRUYERE
   </div>
+</body>
+</html>
 
   <!-- ENCABEZADO -->
   <div class="header">
@@ -202,113 +185,6 @@
     </div>
   </div>
 
-  <!-- Acá agregás las secciones y el informe final -->
-  <!-- SECCIÓN 1 -->
-  <h2 class="section-title">TRABAJO DE LA MANO ROBOTICA</h2>
-  <div class="bloques-container">
-    <div class="bloque">
-      <h3>TRABAJO DE LA MANO ROBOTICA</h3>
-      <p>Medicion y Diseños de Piezas.</p>
-      <img src="https://i.postimg.cc/ydxXfKFp/imagen-2025-06-22-160412109.png" class="pixel-art" alt="Sensor">
-    </div>
-    <div class="bloque">
-      <h3>Impresion de Piezas</h3>
-      <p>Proceso largo che... se imprimio con impresoras 3d ender y biqu</p>
-      <img src="https://i.postimg.cc/Kz3QGFRk/imagen-2025-06-22-160601091.png" class="pixel-art" alt="Yerba">
-    </div>
-    <div class="bloque">
-      <h3>Verificamiento y Correciones</h3>
-      <p>Verificamos todas las piezas y imprimimos faltantes</p>
-      <img src="https://i.postimg.cc/3xLZ2WG0/imagen-2025-06-22-160705455.png" class="pixel-art" alt="Luz">
-    </div>
-    <div class="bloque">
-      <h3>Ensamble</h3>
-      <p>FALTA</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Agua">
-    </div>
-    <div class="bloque">
-      <h3>FALTA</h3>
-      <p>QUIERO</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Movimiento">
-    </div>
-    <div class="bloque">
-      <h3>33</h3>
-      <p>HIJO DE PUTA</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Sonido">
-    </div>
-  </div>
-
-  <!-- SECCIÓN 2 -->
-  <h2 class="section-title">SECCIÓN 2: CONTROL</h2>
-  <div class="bloques-container">
-    <div class="bloque">
-      <h3>LED Mate</h3>
-      <p>Indicador de cebado listo.</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="LED Mate">
-    </div>
-    <div class="bloque">
-      <h3>Motor Bomba</h3>
-      <p>Paso de agua automatizado.</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Motor">
-    </div>
-    <div class="bloque">
-      <h3>Servo Tapa</h3>
-      <p>Levanta tapa del termo.</p>
-      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="Servo">
-    </div>
-    <div class="bloque">
-      <h3>Rele Eléctrico</h3>
-      <p>Encendido de dispositivos.</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="Rele">
-    </div>
-    <div class="bloque">
-      <h3>Display LCD</h3>
-      <p>Muestra temperatura y estado.</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="LCD">
-    </div>
-    <div class="bloque">
-      <h3>Botón Reset</h3>
-      <p>Reinicia el sistema.</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Botón">
-    </div>
-  </div>
-
-  <!-- SECCIÓN 3 -->
-  <h2 class="section-title">SECCIÓN 3: INTERACCIÓN</h2>
-  <div class="bloques-container">
-    <div class="bloque">
-      <h3>App Bluetooth</h3>
-      <p>Control remoto desde el celular.</p>
-      <img src="https://i.imgur.com/ZoWQvAa.png" class="pixel-art" alt="Bluetooth">
-    </div>
-    <div class="bloque">
-      <h3>Notificaciones</h3>
-      <p>Avisa si el mate está listo.</p>
-      <img src="https://i.imgur.com/XTRxGFn.png" class="pixel-art" alt="Notificaciones">
-    </div>
-    <div class="bloque">
-      <h3>QR Escaneo</h3>
-      <p>Abre esta web al escanear.</p>
-      <img src="https://i.imgur.com/MO2j6gC.png" class="pixel-art" alt="QR">
-    </div>
-    <div class="bloque">
-      <h3>Joystick</h3>
-      <p>Controla la selección del menú.</p>
-      <img src="https://i.imgur.com/kLr8rJH.png" class="pixel-art" alt="Joystick">
-    </div>
-    <div class="bloque">
-      <h3>Pantalla OLED</h3>
-      <p>Visualización compacta retro.</p>
-      <img src="https://i.imgur.com/WQoyyJd.png" class="pixel-art" alt="OLED">
-    </div>
-    <div class="bloque">
-      <h3>Buzzer</h3>
-      <p>Alerta sonora pixelada.</p>
-      <img src="https://i.imgur.com/a0jv0Vf.png" class="pixel-art" alt="Buzzer">
-    </div>
-  </div>
-
-  <!-- SECCIÓN DE INFORME FINAL -->
   <!-- Acá agregás las secciones y el informe final -->
   <!-- SECCIÓN 1 -->
   <h2 class="section-title">TRABAJO DE LA MANO ROBOTICA</h2>
