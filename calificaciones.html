@@ -64,7 +64,7 @@
 
   <h2>Dejanos tu calificación</h2>
 
-  <div id="user-info"></div>
+  <div id="user-info">Cargando...</div>
 
   <div id="formulario" style="display:none;">
     <textarea id="comentario" placeholder="Escribí tu opinión..."></textarea><br/>
@@ -118,8 +118,11 @@
 
     // Estado de autenticación
     auth.onAuthStateChanged(user => {
+      const userInfoDiv = document.getElementById('user-info');
+      userInfoDiv.innerHTML = '';  // Limpia para evitar duplicados
+
       if (user) {
-        document.getElementById('user-info').innerHTML = "Conectado como: " + user.displayName;
+        userInfoDiv.textContent = "Conectado como: " + user.displayName;
         document.getElementById('formulario').style.display = "block";
         cargarComentarios();
       } else {
@@ -129,7 +132,8 @@
           const provider = new firebase.auth.GoogleAuthProvider();
           auth.signInWithRedirect(provider);
         };
-        document.getElementById("user-info").appendChild(btn);
+        userInfoDiv.appendChild(btn);
+        document.getElementById('formulario').style.display = "none";
       }
     });
 
@@ -183,3 +187,4 @@
 
 </body>
 </html>
+
