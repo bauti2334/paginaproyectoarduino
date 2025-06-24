@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Día a Día del Proyecto - Proyecto Móvil</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/mgWjT0sh/logitipo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu {
+      background-color: #111;
+      border-bottom: 2px solid white;
+      box-shadow: 0 0 10px deepskyblue;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 10px;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    .menu ul li a:hover {
+      color: deepskyblue;
+      text-shadow: 0 0 5px white;
+    }
+
+    .titulo {
+      font-size: 12px;
+      margin: 40px 0 20px;
+      text-shadow: 0 0 5px deepskyblue;
+    }
+
+    .dia-dia-container {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      text-align: left;
+    }
+
+    /* Caja horizontal día */
+    .dia-dia-item {
+      display: flex;
+      align-items: center;
+      background-color: #111;
+      border: 2px solid white;
+      box-shadow: 0 0 10px deepskyblue;
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      gap: 20px;
+    }
+
+    /* Imagen izquierda opcional */
+    .dia-dia-img {
+      flex-shrink: 0;
+      width: 140px;
+      height: 90px;
+      background-color: #222;
+      box-shadow: 0 0 5px white;
+      object-fit: cover;
+      border: 1px solid white;
+    }
+
+    .dia-dia-texto {
+      flex-grow: 1;
+    }
+
+    .dia-dia-fecha {
+      font-size: 8px;
+      color: deepskyblue;
+      margin-bottom: 6px;
+      text-shadow: 0 0 3px white;
+    }
+
+    .dia-dia-titulo {
+      font-size: 10px;
+      margin: 0 0 6px 0;
+      font-weight: bold;
+      text-shadow: 0 0 5px deepskyblue;
+    }
+
+    .dia-dia-descripcion {
+      font-size: 8px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Para que no se achique demasiado en pantallas pequeñas */
+    @media (max-width: 480px) {
+      .dia-dia-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .dia-dia-img {
+        width: 100%;
+        height: auto;
+      }
+
+      .dia-dia-texto {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="menu">
+    <ul>
+      <li><a href="presentacion.html">Presentación</a></li>
+      <li><a href="index.html">Procesos</a></li>
+      <li><a href="piezas.html">Piezas</a></li>
+      <li><a href="diario.html">Día a Día del Proyecto</a></li>
+      <li><a href="funcionamiento.html">Muestras del Funcionamiento</a></li>
+      <li><a href="quienes.html">Quiénes Somos</a></li>
+      <li><a href="consultas.html">Contactos</a></li>
+      <li><a href="usos.html">Usos del Móvil</a></li>
+    </ul>
+  </nav>
+
+  <h2 class="titulo">Día a Día del Proyecto</h2>
+
+  <div class="dia-dia-container">
+
+    <!-- Ejemplo de día con imagen -->
+    <div class="dia-dia-item">
+      <img class="dia-dia-img" src="https://i.postimg.cc/YqG0F9yx/ejemplo.jpg" alt="Foto Día 1" />
+      <div class="dia-dia-texto">
+        <div class="dia-dia-fecha">01/06/2025</div>
+        <h4 class="dia-dia-titulo">Inicio del proyecto</h4>
+        <p class="dia-dia-descripcion">Definición de objetivos y distribución de tareas entre los integrantes del equipo.</p>
+      </div>
+    </div>
+
+    <!-- Ejemplo de día sin imagen (puedes eliminar el img o poner un placeholder vacío) -->
+    <div class="dia-dia-item">
+      <!-- Si no querés imagen, comentá o borra esta línea -->
+      <!--<img class="dia-dia-img" src="" alt="Sin imagen" />-->
+      <div class="dia-dia-texto" style="margin-left:0;">
+        <div class="dia-dia-fecha">02/06/2025</div>
+        <h4 class="dia-dia-titulo">Investigación de componentes</h4>
+        <p class="dia-dia-descripcion">Revisión y selección de piezas electrónicas para el hardware del proyecto.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
