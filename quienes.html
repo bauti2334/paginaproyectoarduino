@@ -48,8 +48,13 @@
 
     .titulo {
       font-size: 12px;
-      margin: 40px 0 20px;
+      margin: 40px 0 10px;
       text-shadow: 0 0 5px deepskyblue;
+    }
+
+    .logo {
+      width: 180px;
+      margin-bottom: 30px;
     }
 
     .equipo {
@@ -80,9 +85,31 @@
       margin: 10px 0 5px;
     }
 
+    .rol {
+      display: inline-block;
+      font-size: 8px;
+      padding: 4px 8px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 0 5px currentColor;
+    }
+
+    .rol-programador {
+      color: #00b0f4;
+      border: 1px solid #00b0f4;
+      background-color: rgba(0, 176, 244, 0.1);
+    }
+
+    .rol-ingeniero {
+      color: #43b581;
+      border: 1px solid #43b581;
+      background-color: rgba(67, 181, 129, 0.1);
+    }
+
     .integrante p {
       font-size: 8px;
-      line-height: 1.4;
+      margin: 0;
     }
 
     .descripcion-final {
@@ -112,25 +139,28 @@
   </nav>
 
   <h2 class="titulo">¿Quiénes somos?</h2>
+  <img src="https://i.postimg.cc/bJccjqTr/Logotipo-Proyecto.png" alt="Logo Proyecto" class="logo">
 
   <div class="equipo">
     <!-- Integrante 1 -->
     <div class="integrante">
       <img src="https://i.postimg.cc/bJccjqTr/Logotipo-Proyecto.png" alt="Bautista">
       <h3>Bautista Mansilla Otero</h3>
-      <p>Diseño, programación y documentación técnica del proyecto.</p>
+      <div class="rol rol-programador">PAPU</div>
+      <p>Descripción</p>
     </div>
 
     <!-- Integrante 2 -->
     <div class="integrante">
       <img src="https://via.placeholder.com/280x180?text=FOTO" alt="Martín">
       <h3>Martín Bruyere</h3>
-      <p>Electrónica, ensamblaje de hardware y pruebas de campo.</p>
+      <div class="rol rol-ingeniero">BOSTERO</div>
+      <p>Descripción</p>
     </div>
   </div>
 
   <div class="descripcion-final">
-    <p>Somos un equipo de estudiantes apasionados por la tecnología, la seguridad y la innovación. Este proyecto nace del compromiso por aplicar la ingeniería a soluciones reales, combinando robótica, VR y microcontroladores. Trabajamos con creatividad, esfuerzo y orgullo argentino.</p>
+    <p>Somos un equipo de estudiantes argentinos con pasión por la robótica, la seguridad y la innovación. Este proyecto representa el esfuerzo conjunto, la creatividad y el compromiso de aplicar tecnología a un problema real.</p>
   </div>
 
 </body>
