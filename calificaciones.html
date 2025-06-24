@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Calificaciones - Proyecto Móvil</title>
+  <title>Calificaciones Anónimas - Proyecto Móvil</title>
   <link rel="icon" href="https://i.postimg.cc/mgWjT0sh/logitipo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
   <style>
@@ -16,28 +16,12 @@
     h2 {
       text-shadow: 0 0 5px deepskyblue;
     }
-    .comentario-box {
-      border: 2px solid white;
-      padding: 15px;
-      margin: 20px auto;
-      background-color: #111;
-      box-shadow: 0 0 10px deepskyblue;
-      max-width: 600px;
-      text-align: left;
-    }
-    .comentario-box p {
-      font-size: 8px;
-    }
-    .comentario-box h4 {
-      font-size: 10px;
-      color: deepskyblue;
-      text-shadow: 0 0 3px white;
-    }
-    textarea, select {
+    textarea, input, select {
       width: 100%;
       padding: 10px;
       font-size: 10px;
       margin-top: 10px;
+      box-sizing: border-box;
     }
     button {
       margin-top: 10px;
@@ -54,28 +38,40 @@
       padding: 10px;
       margin: 10px 0;
       text-align: left;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .comentario-item span {
+    .comentario-item h4 {
+      font-size: 10px;
+      color: deepskyblue;
+      margin: 0 0 5px;
+    }
+    .comentario-item p {
       font-size: 8px;
+      margin: 0 0 5px;
+    }
+    .comentario-item small {
+      font-size: 6px;
+      color: #aaa;
     }
   </style>
 </head>
 <body>
 
-  <h2>Dejanos tu calificación</h2>
+  <h2>Dejanos tu calificación anónima</h2>
 
-  <div id="user-info">Cargando...</div>
-
-  <div id="formulario" style="display:none;">
-    <textarea id="comentario" placeholder="Escribí tu opinión..."></textarea><br/>
-    <label>Calificación: </label>
+  <div id="formulario">
+    <input type="text" id="nombre" placeholder="Tu nombre o apodo" maxlength="30" />
+    <textarea id="comentario" placeholder="Escribí tu opinión..." rows="4"></textarea>
+    <label>Calificación:</label>
     <select id="rating">
       <option value="5">⭐⭐⭐⭐⭐</option>
       <option value="4">⭐⭐⭐⭐</option>
       <option value="3">⭐⭐⭐</option>
       <option value="2">⭐⭐</option>
       <option value="1">⭐</option>
-    </select><br/>
+    </select>
     <button onclick="enviarComentario()">Enviar</button>
   </div>
 
@@ -85,11 +81,10 @@
 
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Configuración Firebase
+    // Config Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAMPFFP6YolOtJc33uiUa9QLfb6NJ78lAc",
       authDomain: "arduino-proyecto-fe7ee.firebaseapp.com",
@@ -101,59 +96,20 @@
     };
 
     firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // Recuperar sesión después del redirect
-    auth.getRedirectResult()
-      .then((result) => {
-        if (result.user) {
-          console.log("Sesión iniciada:", result.user.displayName);
-        }
-      })
-      .catch((error) => {
-        console.error("Error en redirect:", error.message);
-        alert("Error: " + error.message);
-      });
-
-    // Estado de autenticación
-    auth.onAuthStateChanged(user => {
-      const userInfoDiv = document.getElementById('user-info');
-      userInfoDiv.innerHTML = '';  // limpiar
-
-      if (user) {
-        userInfoDiv.textContent = "Conectado como: " + user.displayName;
-        document.getElementById('formulario').style.display = "block";
-        cargarComentarios();
-      } else {
-        const btn = document.createElement("button");
-        btn.innerText = "Iniciar sesión con Google";
-        btn.onclick = () => {
-          auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-              const provider = new firebase.auth.GoogleAuthProvider();
-              return auth.signInWithRedirect(provider);
-            })
-            .catch(error => {
-              alert("Error iniciando sesión: " + error.message);
-            });
-        };
-        userInfoDiv.appendChild(btn);
-        document.getElementById('formulario').style.display = "none";
-      }
-    });
-
-    // Enviar comentario
+    // Enviar comentario anónimo
     function enviarComentario() {
-      const comentario = document.getElementById("comentario").value;
-      const rating = document.getElementById("rating").value;
-      const user = auth.currentUser;
-      if (comentario.trim() === "") return alert("Comentario vacío");
+      const nombre = document.getElementById("nombre").value.trim() || "Anónimo";
+      const comentario = document.getElementById("comentario").value.trim();
+      const rating = parseInt(document.getElementById("rating").value);
+
+      if (!comentario) return alert("El comentario está vacío");
+
       db.collection("comentarios").add({
-        nombre: user.displayName,
-        comentario: comentario,
-        rating: parseInt(rating),
-        uid: user.uid,
+        nombre,
+        comentario,
+        rating,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
         document.getElementById("comentario").value = "";
@@ -165,30 +121,26 @@
     function cargarComentarios() {
       const container = document.getElementById("comentarios-container");
       container.innerHTML = "<h3>Comentarios:</h3>";
-      db.collection("comentarios").orderBy("timestamp", "desc").get().then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          const data = doc.data();
-          const div = document.createElement("div");
-          div.className = "comentario-item";
-          div.innerHTML = `
-            <h4>${data.nombre} - ${"⭐".repeat(data.rating)}</h4>
-            <p>${data.comentario}</p>
-            ${auth.currentUser && data.uid === auth.currentUser.uid ? 
-              `<button onclick="eliminarComentario('${doc.id}')">Eliminar</button>` : ""}
-          `;
-          container.appendChild(div);
+
+      db.collection("comentarios").orderBy("timestamp", "desc").limit(50).get()
+        .then(snapshot => {
+          snapshot.forEach(doc => {
+            const data = doc.data();
+            const fecha = data.timestamp ? data.timestamp.toDate().toLocaleString() : "";
+            const div = document.createElement("div");
+            div.className = "comentario-item";
+            div.innerHTML = `
+              <h4>${data.nombre} - ${"⭐".repeat(data.rating)}</h4>
+              <p>${data.comentario}</p>
+              <small>${fecha}</small>
+            `;
+            container.appendChild(div);
+          });
         });
-      });
     }
 
-    // Eliminar comentario
-    function eliminarComentario(id) {
-      if (confirm("¿Eliminar este comentario?")) {
-        db.collection("comentarios").doc(id).delete().then(() => {
-          cargarComentarios();
-        });
-      }
-    }
+    // Cargar comentarios al inicio
+    cargarComentarios();
   </script>
 
 </body>
