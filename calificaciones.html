@@ -89,7 +89,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
   <script>
-    // Configuración de tu proyecto
+    // Configuración Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAMPFFP6YolOtJc33uiUa9QLfb6NJ78lAc",
       authDomain: "arduino-proyecto-fe7ee.firebaseapp.com",
@@ -100,12 +100,23 @@
       measurementId: "G-BHKV76JG9E"
     };
 
-    // Inicialización
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
     const db = firebase.firestore();
 
-    // Autenticación
+    // Recuperar sesión después del redirect
+    auth.getRedirectResult()
+      .then((result) => {
+        if (result.user) {
+          console.log("Sesión iniciada:", result.user.displayName);
+        }
+      })
+      .catch((error) => {
+        console.error("Error en redirect:", error.message);
+        alert("Error: " + error.message);
+      });
+
+    // Estado de autenticación
     auth.onAuthStateChanged(user => {
       if (user) {
         document.getElementById('user-info').innerHTML = "Conectado como: " + user.displayName;
@@ -116,7 +127,7 @@
         btn.innerText = "Iniciar sesión con Google";
         btn.onclick = () => {
           const provider = new firebase.auth.GoogleAuthProvider();
-          auth.signInWithPopup(provider);
+          auth.signInWithRedirect(provider);
         };
         document.getElementById("user-info").appendChild(btn);
       }
@@ -160,7 +171,7 @@
       });
     }
 
-    // Eliminar comentario propio
+    // Eliminar comentario
     function eliminarComentario(id) {
       if (confirm("¿Eliminar este comentario?")) {
         db.collection("comentarios").doc(id).delete().then(() => {
