@@ -119,7 +119,7 @@
     // Estado de autenticación
     auth.onAuthStateChanged(user => {
       const userInfoDiv = document.getElementById('user-info');
-      userInfoDiv.innerHTML = '';  // Limpia para evitar duplicados
+      userInfoDiv.innerHTML = '';  // limpiar
 
       if (user) {
         userInfoDiv.textContent = "Conectado como: " + user.displayName;
@@ -129,8 +129,14 @@
         const btn = document.createElement("button");
         btn.innerText = "Iniciar sesión con Google";
         btn.onclick = () => {
-          const provider = new firebase.auth.GoogleAuthProvider();
-          auth.signInWithRedirect(provider);
+          auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(() => {
+              const provider = new firebase.auth.GoogleAuthProvider();
+              return auth.signInWithRedirect(provider);
+            })
+            .catch(error => {
+              alert("Error iniciando sesión: " + error.message);
+            });
         };
         userInfoDiv.appendChild(btn);
         document.getElementById('formulario').style.display = "none";
