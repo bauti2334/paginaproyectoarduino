@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calificaciones - Proyecto Móvil</title>
+  <link rel="icon" href="https://i.postimg.cc/mgWjT0sh/logitipo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    h2 {
+      text-shadow: 0 0 5px deepskyblue;
+    }
+    .comentario-box {
+      border: 2px solid white;
+      padding: 15px;
+      margin: 20px auto;
+      background-color: #111;
+      box-shadow: 0 0 10px deepskyblue;
+      max-width: 600px;
+      text-align: left;
+    }
+    .comentario-box p {
+      font-size: 8px;
+    }
+    .comentario-box h4 {
+      font-size: 10px;
+      color: deepskyblue;
+      text-shadow: 0 0 3px white;
+    }
+    textarea, select {
+      width: 100%;
+      padding: 10px;
+      font-size: 10px;
+      margin-top: 10px;
+    }
+    button {
+      margin-top: 10px;
+      padding: 5px 15px;
+      font-size: 10px;
+      background-color: deepskyblue;
+      color: black;
+      border: none;
+      cursor: pointer;
+    }
+    .comentario-item {
+      background-color: #222;
+      border: 1px solid white;
+      padding: 10px;
+      margin: 10px 0;
+      text-align: left;
+    }
+    .comentario-item span {
+      font-size: 8px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Dejanos tu calificación</h2>
+
+  <div id="user-info"></div>
+
+  <div id="formulario" style="display:none;">
+    <textarea id="comentario" placeholder="Escribí tu opinión..."></textarea><br/>
+    <label>Calificación: </label>
+    <select id="rating">
+      <option value="5">⭐⭐⭐⭐⭐</option>
+      <option value="4">⭐⭐⭐⭐</option>
+      <option value="3">⭐⭐⭐</option>
+      <option value="2">⭐⭐</option>
+      <option value="1">⭐</option>
+    </select><br/>
+    <button onclick="enviarComentario()">Enviar</button>
+  </div>
+
+  <div id="comentarios-container">
+    <h3>Comentarios:</h3>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    // Configuración de tu proyecto
+    const firebaseConfig = {
+      apiKey: "AIzaSyAMPFFP6YolOtJc33uiUa9QLfb6NJ78lAc",
+      authDomain: "arduino-proyecto-fe7ee.firebaseapp.com",
+      projectId: "arduino-proyecto-fe7ee",
+      storageBucket: "arduino-proyecto-fe7ee.firebasestorage.app",
+      messagingSenderId: "414760604203",
+      appId: "1:414760604203:web:5153d9494820dba8b8d06e",
+      measurementId: "G-BHKV76JG9E"
+    };
+
+    // Inicialización
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // Autenticación
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById('user-info').innerHTML = "Conectado como: " + user.displayName;
+        document.getElementById('formulario').style.display = "block";
+        cargarComentarios();
+      } else {
+        const btn = document.createElement("button");
+        btn.innerText = "Iniciar sesión con Google";
+        btn.onclick = () => {
+          const provider = new firebase.auth.GoogleAuthProvider();
+          auth.signInWithPopup(provider);
+        };
+        document.getElementById("user-info").appendChild(btn);
+      }
+    });
+
+    // Enviar comentario
+    function enviarComentario() {
+      const comentario = document.getElementById("comentario").value;
+      const rating = document.getElementById("rating").value;
+      const user = auth.currentUser;
+      if (comentario.trim() === "") return alert("Comentario vacío");
+      db.collection("comentarios").add({
+        nombre: user.displayName,
+        comentario: comentario,
+        rating: parseInt(rating),
+        uid: user.uid,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        document.getElementById("comentario").value = "";
+        cargarComentarios();
+      });
+    }
+
+    // Cargar comentarios
+    function cargarComentarios() {
+      const container = document.getElementById("comentarios-container");
+      container.innerHTML = "<h3>Comentarios:</h3>";
+      db.collection("comentarios").orderBy("timestamp", "desc").get().then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          const data = doc.data();
+          const div = document.createElement("div");
+          div.className = "comentario-item";
+          div.innerHTML = `
+            <h4>${data.nombre} - ${"⭐".repeat(data.rating)}</h4>
+            <p>${data.comentario}</p>
+            ${auth.currentUser && data.uid === auth.currentUser.uid ? 
+              `<button onclick="eliminarComentario('${doc.id}')">Eliminar</button>` : ""}
+          `;
+          container.appendChild(div);
+        });
+      });
+    }
+
+    // Eliminar comentario propio
+    function eliminarComentario(id) {
+      if (confirm("¿Eliminar este comentario?")) {
+        db.collection("comentarios").doc(id).delete().then(() => {
+          cargarComentarios();
+        });
+      }
+    }
+  </script>
+
+</body>
+</html>
