@@ -22,6 +22,9 @@
       font-size: 10px;
       margin-top: 10px;
       box-sizing: border-box;
+      background-color: #111;
+      border: 1px solid deepskyblue;
+      color: white;
     }
     button {
       margin-top: 10px;
@@ -36,11 +39,10 @@
       background-color: #222;
       border: 1px solid white;
       padding: 10px;
-      margin: 10px 0;
+      margin: 10px auto;
       text-align: left;
       max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      border-radius: 4px;
     }
     .comentario-item h4 {
       font-size: 10px;
@@ -50,6 +52,7 @@
     .comentario-item p {
       font-size: 8px;
       margin: 0 0 5px;
+      white-space: pre-wrap;
     }
     .comentario-item small {
       font-size: 6px;
@@ -62,7 +65,7 @@
   <h2>Dejanos tu calificación anónima</h2>
 
   <div id="formulario">
-    <input type="text" id="nombre" placeholder="Tu nombre o apodo" maxlength="30" />
+    <input type="text" id="nombre" placeholder="Tu nombre o apodo" maxlength="30" autocomplete="off" />
     <textarea id="comentario" placeholder="Escribí tu opinión..." rows="4"></textarea>
     <label>Calificación:</label>
     <select id="rating">
@@ -72,7 +75,7 @@
       <option value="2">⭐⭐</option>
       <option value="1">⭐</option>
     </select>
-    <button onclick="enviarComentario()">Enviar</button>
+    <button type="button" id="btnEnviar">Enviar</button>
   </div>
 
   <div id="comentarios-container">
@@ -98,13 +101,22 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Enviar comentario anónimo
+    // Función para enviar comentario
     function enviarComentario() {
-      const nombre = document.getElementById("nombre").value.trim() || "Anónimo";
-      const comentario = document.getElementById("comentario").value.trim();
-      const rating = parseInt(document.getElementById("rating").value);
+      const nombreInput = document.getElementById("nombre");
+      const comentarioInput = document.getElementById("comentario");
+      const ratingSelect = document.getElementById("rating");
 
-      if (!comentario) return alert("El comentario está vacío");
+      const nombre = nombreInput.value.trim() || "Anónimo";
+      const comentario = comentarioInput.value.trim();
+      const rating = parseInt(ratingSelect.value);
+
+      if (!comentario) {
+        alert("El comentario está vacío");
+        return;
+      }
+
+      console.log("Enviando comentario:", { nombre, comentario, rating });
 
       db.collection("comentarios").add({
         nombre,
@@ -112,37 +124,66 @@
         rating,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
       }).then(() => {
-        document.getElementById("comentario").value = "";
+        console.log("Comentario enviado correctamente");
+        comentarioInput.value = "";
+        nombreInput.value = "";
         cargarComentarios();
+      }).catch(error => {
+        console.error("Error al enviar comentario:", error);
+        alert("Error al enviar comentario, intenta nuevamente");
       });
     }
 
-    // Cargar comentarios
+    // Función para cargar comentarios
     function cargarComentarios() {
       const container = document.getElementById("comentarios-container");
       container.innerHTML = "<h3>Comentarios:</h3>";
 
       db.collection("comentarios").orderBy("timestamp", "desc").limit(50).get()
         .then(snapshot => {
+          if(snapshot.empty){
+            container.innerHTML += "<p>No hay comentarios aún.</p>";
+            return;
+          }
           snapshot.forEach(doc => {
             const data = doc.data();
             const fecha = data.timestamp ? data.timestamp.toDate().toLocaleString() : "";
             const div = document.createElement("div");
             div.className = "comentario-item";
             div.innerHTML = `
-              <h4>${data.nombre} - ${"⭐".repeat(data.rating)}</h4>
-              <p>${data.comentario}</p>
+              <h4>${escapeHtml(data.nombre)} - ${"⭐".repeat(data.rating)}</h4>
+              <p>${escapeHtml(data.comentario)}</p>
               <small>${fecha}</small>
             `;
             container.appendChild(div);
           });
+        }).catch(error => {
+          console.error("Error cargando comentarios:", error);
+          container.innerHTML += "<p>Error cargando comentarios.</p>";
         });
     }
 
-    // Cargar comentarios al inicio
+    // Función para escapar HTML y evitar inyección
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function(m) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[m];
+      });
+    }
+
+    // Asignar evento al botón
+    document.getElementById("btnEnviar").addEventListener("click", enviarComentario);
+
+    // Cargar comentarios al iniciar
     cargarComentarios();
   </script>
 
 </body>
 </html>
+
 
