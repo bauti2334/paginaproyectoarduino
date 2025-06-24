@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Muestras del Funcionamiento - Proyecto Móvil</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/mgWjT0sh/logitipo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: white;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    .menu {
+      background-color: #111;
+      border-bottom: 2px solid white;
+      box-shadow: 0 0 10px deepskyblue;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 10px;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    .menu ul li a:hover {
+      color: deepskyblue;
+      text-shadow: 0 0 5px white;
+    }
+
+    .titulo {
+      font-size: 12px;
+      margin: 40px 0 20px;
+      text-shadow: 0 0 5px deepskyblue;
+    }
+
+    .videos-container {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      text-align: left;
+    }
+
+    .video-block {
+      display: flex;
+      background-color: #111;
+      border: 2px solid white;
+      box-shadow: 0 0 10px deepskyblue;
+      padding: 20px;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .video-frame {
+      flex-shrink: 0;
+      width: 320px;
+      height: 180px;
+      border: none;
+      box-shadow: 0 0 5px white;
+      border: 1px solid white;
+    }
+
+    .video-info {
+      flex-grow: 1;
+    }
+
+    .video-titulo {
+      font-size: 10px;
+      margin: 0 0 10px 0;
+      color: deepskyblue;
+      text-shadow: 0 0 5px white;
+    }
+
+    .video-descripcion {
+      font-size: 8px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Responsive: vertical stack en pantallas chicas */
+    @media (max-width: 480px) {
+      .video-block {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .video-frame {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+      .video-info {
+        width: 100%;
+        margin-top: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="menu">
+    <ul>
+      <li><a href="presentacion.html">Presentación</a></li>
+      <li><a href="index.html">Procesos</a></li>
+      <li><a href="piezas.html">Piezas</a></li>
+      <li><a href="diario.html">Día a Día del Proyecto</a></li>
+      <li><a href="funcionamiento.html">Muestras del Funcionamiento</a></li>
+      <li><a href="quienes.html">Quiénes Somos</a></li>
+      <li><a href="consultas.html">Contactos</a></li>
+      <li><a href="usos.html">Usos del Móvil</a></li>
+    </ul>
+  </nav>
+
+  <h2 class="titulo">Muestras del Funcionamiento</h2>
+
+  <div class="videos-container">
+
+    <!-- Bloque 1 -->
+    <div class="video-block">
+      <iframe 
+        class="video-frame"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        title="Video Funcionamiento 1" 
+        allowfullscreen 
+        loading="lazy"></iframe>
+      <div class="video-info">
+        <h3 class="video-titulo">Prueba de Sensores</h3>
+        <p class="video-descripcion">Demostración del sistema de sensores funcionando en tiempo real, mostrando la detección precisa y respuesta inmediata.</p>
+      </div>
+    </div>
+
+    <!-- Bloque 2 -->
+    <div class="video-block">
+      <iframe 
+        class="video-frame" 
+        src="https://drive.google.com/file/d/1aBcD1234EFGH5678/view?usp=sharing&embedded=true" 
+        title="Video Funcionamiento 2" 
+        allowfullscreen 
+        loading="lazy"></iframe>
+      <div class="video-info">
+        <h3 class="video-titulo">Montaje y Ensamblaje</h3>
+        <p class="video-descripcion">Proceso completo de ensamblaje de los componentes electrónicos y mecánicos del proyecto.</p>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
