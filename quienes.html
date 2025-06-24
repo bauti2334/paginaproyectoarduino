@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiénes Somos - Proyecto Móvil</title>
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/mgWjT0sh/logitipo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: black;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu {
+      background-color: #111;
+      border-bottom: 2px solid white;
+      box-shadow: 0 0 10px deepskyblue;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .menu ul {
+      list-style: none;
+      margin: 0;
+      padding: 10px 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 10px;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    .menu ul li a:hover {
+      color: deepskyblue;
+      text-shadow: 0 0 5px white;
+    }
+
+    .titulo {
+      font-size: 12px;
+      margin: 40px 0 20px;
+      text-shadow: 0 0 5px deepskyblue;
+    }
+
+    .equipo {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .integrante {
+      background-color: #111;
+      border: 2px solid white;
+      width: 280px;
+      padding: 20px;
+      box-shadow: 0 0 10px deepskyblue;
+    }
+
+    .integrante img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+      box-shadow: 0 0 5px white;
+    }
+
+    .integrante h3 {
+      font-size: 10px;
+      margin: 10px 0 5px;
+    }
+
+    .integrante p {
+      font-size: 8px;
+      line-height: 1.4;
+    }
+
+    .descripcion-final {
+      max-width: 800px;
+      margin: 40px auto;
+      font-size: 9px;
+      padding: 20px;
+      border: 2px solid white;
+      box-shadow: 0 0 10px deepskyblue;
+      background-color: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="menu">
+    <ul>
+      <li><a href="presentacion.html">Presentación</a></li>
+      <li><a href="index.html">Procesos</a></li>
+      <li><a href="piezas.html">Piezas</a></li>
+      <li><a href="diario.html">Día a Día del Proyecto</a></li>
+      <li><a href="funcionamiento.html">Muestras del Funcionamiento</a></li>
+      <li><a href="quienes.html">Quiénes Somos</a></li>
+      <li><a href="consultas.html">Contactos</a></li>
+      <li><a href="usos.html">Usos del Móvil</a></li>
+    </ul>
+  </nav>
+
+  <h2 class="titulo">¿Quiénes somos?</h2>
+
+  <div class="equipo">
+    <!-- Integrante 1 -->
+    <div class="integrante">
+      <img src="https://i.postimg.cc/bJccjqTr/Logotipo-Proyecto.png" alt="Bautista">
+      <h3>Bautista Mansilla Otero</h3>
+      <p>Diseño, programación y documentación técnica del proyecto.</p>
+    </div>
+
+    <!-- Integrante 2 -->
+    <div class="integrante">
+      <img src="https://via.placeholder.com/280x180?text=FOTO" alt="Martín">
+      <h3>Martín Bruyere</h3>
+      <p>Electrónica, ensamblaje de hardware y pruebas de campo.</p>
+    </div>
+  </div>
+
+  <div class="descripcion-final">
+    <p>Somos un equipo de estudiantes apasionados por la tecnología, la seguridad y la innovación. Este proyecto nace del compromiso por aplicar la ingeniería a soluciones reales, combinando robótica, VR y microcontroladores. Trabajamos con creatividad, esfuerzo y orgullo argentino.</p>
+  </div>
+
+</body>
+</html>
