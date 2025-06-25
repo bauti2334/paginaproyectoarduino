@@ -87,6 +87,7 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
 
   <script>
+    // Config Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyAMPFFP6YolOtJc33uiUa9QLfb6NJ78lAc",
       authDomain: "arduino-proyecto-fe7ee.firebaseapp.com",
@@ -100,21 +101,8 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Función para escapar HTML y evitar inyección
-    function escapeHtml(text) {
-      return text.replace(/[&<>"']/g, function(m) {
-        return ({
-          '&': '&amp;',
-          '<': '&lt;',
-          '>': '&gt;',
-          '"': '&quot;',
-          "'": '&#39;'
-        })[m];
-      });
-    }
-
-    // Enviar comentario con validación 24h
-    async function enviarComentario() {
+    // Función para enviar comentario
+    function enviarComentario() {
       const nombreInput = document.getElementById("nombre");
       const comentarioInput = document.getElementById("comentario");
       const ratingSelect = document.getElementById("rating");
@@ -128,40 +116,25 @@
         return;
       }
 
-      // Fecha límite: 24 horas antes de ahora
-      const fechaLimite = new Date(Date.now() - 24*60*60*1000);
+      console.log("Enviando comentario:", { nombre, comentario, rating });
 
-      try {
-        // Buscar comentarios del mismo nombre en últimas 24h
-        const querySnapshot = await db.collection("comentarios")
-          .where("nombre", "==", nombre)
-          .where("timestamp", ">", fechaLimite)
-          .get();
-
-        if (!querySnapshot.empty) {
-          alert("Solo podés enviar un comentario cada 24 horas con el mismo nombre.");
-          return;
-        }
-
-        // Guardar comentario si no encontró otro reciente
-        await db.collection("comentarios").add({
-          nombre,
-          comentario,
-          rating,
-          timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        });
-
+      db.collection("comentarios").add({
+        nombre,
+        comentario,
+        rating,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      }).then(() => {
+        console.log("Comentario enviado correctamente");
         comentarioInput.value = "";
         nombreInput.value = "";
         cargarComentarios();
-
-      } catch (error) {
+      }).catch(error => {
         console.error("Error al enviar comentario:", error);
-        alert("Error al enviar comentario: " + error.message);
-      }
+        alert("Error al enviar comentario, intenta nuevamente");
+      });
     }
 
-    // Cargar comentarios
+    // Función para cargar comentarios
     function cargarComentarios() {
       const container = document.getElementById("comentarios-container");
       container.innerHTML = "<h3>Comentarios:</h3>";
@@ -190,12 +163,25 @@
         });
     }
 
+    // Función para escapar HTML y evitar inyección
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, function(m) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[m];
+      });
+    }
+
+    // Asignar evento al botón
     document.getElementById("btnEnviar").addEventListener("click", enviarComentario);
 
+    // Cargar comentarios al iniciar
     cargarComentarios();
   </script>
 
 </body>
 </html>
-
-
